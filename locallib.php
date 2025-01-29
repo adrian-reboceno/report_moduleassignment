@@ -103,16 +103,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, q.name as activityname, 
                 q.timeopen AS startactivity,
                 q.timeclose AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_quiz AS q ON q.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {quiz} AS q ON q.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'quiz'
@@ -125,16 +125,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, f.name as activityname, 
                 f.duedate AS startactivity,
                 f.cutoffdate AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_forum AS f ON f.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {forum} AS f ON f.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'forum'
@@ -147,16 +147,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, ass.name as activityname, 
                 ass.duedate AS startactivity,
                 ass.cutoffdate AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_assign AS ass ON ass.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {assign} AS ass ON ass.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'assign'
@@ -169,16 +169,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, chat.name as activityname, 
                 chat.chattime AS startactivity,
                 NULL AS  endactivity               
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_chat AS chat ON chat.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {chat} AS chat ON chat.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'chat'
@@ -191,16 +191,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, choice.name as activityname, 
                 choice.timeopen AS startactivity,
                 choice.timeclose AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_choice AS choice ON choice.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {choice} AS choice ON choice.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'choice'
@@ -213,16 +213,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, book.name as activityname, 
                 NULL AS startactivity,
                 NULL AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_book AS book ON book.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {book} AS book ON book.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'book'
@@ -235,16 +235,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, dat.name as activityname, 
                 dat.timeavailablefrom AS startactivity,
                 dat.timeavailableto AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_data AS dat ON dat.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {data} AS dat ON dat.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'data'
@@ -257,16 +257,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, h5pac.name as activityname, 
                 NULL AS startactivity,
                 NULL AS  endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_h5pactivity AS h5pac ON h5pac.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {h5pactivity} AS h5pac ON h5pac.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'h5pactivity'
@@ -279,16 +279,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, imscp.name as activityname, 
                 NULL AS startactivity,
                 NULL AS  endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_imscp AS imscp ON imscp.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {imscp} AS imscp ON imscp.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'imscp'
@@ -301,16 +301,16 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, scorm.name as activityname,                 
                 scorm.timeopen AS startactivity,
                 scorm.timeclose AS endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_scorm AS scorm ON scorm.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id
+            JOIN {role_assignments} AS tra ON tra.contextid = ctx.id
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {scorm} AS scorm ON scorm.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'scorm'
@@ -323,16 +323,15 @@ function report_moduleassignment_get_lastaccess($filter){
                 cs.section, cs.name AS 'namesection', m.name AS 'typemodule', cm.id, cm.instance, cm.section, survey.name as activityname, 
                 NULL AS startactivity,
                 NULL AS  endactivity
-            FROM mdl_course AS c
-            LEFT JOIN mdl_context AS ctx ON c.id = ctx.instanceid
-            JOIN mdl_role_assignments AS lra ON lra.contextid = ctx.id
-            JOIN mdl_role_assignments AS tra ON tra.contextid = ctx.id
-            JOIN mdl_user AS u ON lra.userid = u.id
-            JOIN mdl_course_categories AS cats ON c.category = cats.id
-            JOIN mdl_course_sections AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
-            LEFT JOIN mdl_course_modules AS cm ON cm.course = c.id AND cm.section = cs.id
-            JOIN mdl_modules AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
-            LEFT JOIN mdl_survey AS survey ON survey.id = cm.instance
+            FROM {course} AS c
+            LEFT JOIN {context} AS ctx ON c.id = ctx.instanceid
+            JOIN {role_assignments} AS lra ON lra.contextid = ctx.id           
+            JOIN {user} AS u ON lra.userid = u.id
+            JOIN {course_categories} AS cats ON c.category = cats.id
+            JOIN {course_sections} AS cs ON cs.course = c.id AND cs.section <= 20 AND cs.section >= 0
+            LEFT JOIN {course_modules} AS cm ON cm.course = c.id AND cm.section = cs.id
+            JOIN {modules} AS m ON m.id = cm.module AND m.name NOT IN ('label', 'url', 'page', 'resource')
+            LEFT JOIN {survey} AS survey ON survey.id = cm.instance
             WHERE
                 lra.roleid IN (3) 
                 AND m.name LIKE 'survey'
